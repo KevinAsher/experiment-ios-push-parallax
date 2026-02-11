@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>iOS Push Parallax Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <div class="snap-shell perspective overflow" id="snapShell" aria-label="iOS push navigation demo">
+        <section class="screen screen-one" id="screen-1" aria-label="Section 1">
+          <div class="preserve container">
+            <div class="parallax" aria-hidden="true">
+              <div class="glow glow-a"></div>
+              <div class="glow glow-b"></div>
+            </div>
+
+            <div class="sticky-content">
+              <div class="content-card">
+                <p class="kicker">Section 1</p>
+                <h1>iOS Push Navigation Demo</h1>
+                <p class="body-copy">
+                  Tap the button to push to section 2, then drag from the left edge to swipe back.
+                </p>
+                <button id="goForwardBtn" type="button">Go to Section 2</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen screen-two" id="screen-2" aria-label="Section 2">
+          <div class="screen-two-content">
+            <p class="kicker">Section 2</p>
+            <h2>Swipe from the left edge to go back</h2>
+            <p class="body-copy">
+              This view keeps scroll snap and updates the same parallax stack while returning.
+            </p>
+            <button id="goBackBtn" type="button">Back</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
