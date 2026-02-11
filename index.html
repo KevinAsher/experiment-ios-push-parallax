@@ -9,9 +9,9 @@
   </head>
   <body>
     <main class="app">
-      <div class="snap-shell perspective overflow" id="snapShell" aria-label="iOS push navigation demo">
+      <div class="snap-shell overflow" id="snapShell" aria-label="iOS push navigation demo">
         <section class="screen screen-one" id="screen-1" aria-label="Section 1">
-          <div class="preserve container">
+          <div class="container perspective preserve">
             <div class="parallax" aria-hidden="true">
               <div class="glow glow-a"></div>
               <div class="glow glow-b"></div>
@@ -22,7 +22,7 @@
                 <p class="kicker">Section 1</p>
                 <h1>iOS Push Navigation Demo</h1>
                 <p class="body-copy">
-                  Tap the button to push to section 2, then drag from the left edge to swipe back.
+                  Tap the button to push to section 2. Scroll snap + perspective handle the parallax depth.
                 </p>
                 <button id="goForwardBtn" type="button">Go to Section 2</button>
               </div>
@@ -33,10 +33,8 @@
         <section class="screen screen-two" id="screen-2" aria-label="Section 2">
           <div class="screen-two-content">
             <p class="kicker">Section 2</p>
-            <h2>Swipe from the left edge to go back</h2>
-            <p class="body-copy">
-              This view keeps scroll snap and updates the same parallax stack while returning.
-            </p>
+            <h2>Swipe horizontally to go back</h2>
+            <p class="body-copy">Swipe or tap Back to return; parallax remains fully CSS-driven.</p>
             <button id="goBackBtn" type="button">Back</button>
           </div>
         </section>

@@ -1,8 +1,4 @@
 :root {
-  --push-progress: 0;
-  --front-shift: 0%;
-  --parallax-shift: 0px;
-  --parallax-tilt: 0deg;
   --bg-top: #f8fbff;
   --bg-bottom: #f4e7d8;
   --ink: #1b2530;
@@ -59,11 +55,6 @@ body {
   touch-action: pan-x pan-y;
 }
 
-.snap-shell.no-snap {
-  scroll-snap-type: none;
-  scroll-behavior: auto;
-}
-
 .snap-shell::-webkit-scrollbar {
   display: none;
 }
@@ -74,33 +65,45 @@ body {
   height: 100%;
   position: relative;
   scroll-snap-align: start;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .screen-one {
   background: radial-gradient(circle at 18% 24%, #f9f4de 0%, #eef6ff 45%, #e5f0fe 100%);
+  isolation: isolate;
 }
 
 .screen-two {
   background: linear-gradient(160deg, #f5f8ff 0%, #eef4ff 48%, #dceaf8 100%);
   color: #132331;
+  z-index: 3;
 }
 
 .container {
-  width: 100%;
+  width: 200%;
   height: 100%;
   position: relative;
+  display: grid;
 }
 
 .preserve {
   transform-style: preserve-3d;
 }
 
+.container > .parallax,
+.container > .sticky-content {
+  grid-area: 1 / 1;
+}
+
 .parallax {
-  position: absolute;
-  inset: -18% -12%;
-  transform: translate3d(var(--parallax-shift), 0, -1.2px) scale(2.25) rotateY(var(--parallax-tilt));
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
   transform-origin: top left;
+  transform: translateZ(-1.2px) scale(2.2);
   pointer-events: none;
   z-index: 0;
 }
@@ -128,17 +131,18 @@ body {
 }
 
 .sticky-content {
+  position: -webkit-sticky;
   position: sticky;
-  left: 0;
+  left: calc(-20% + 20vw);
   top: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
   z-index: 2;
   display: grid;
   place-items: center;
   padding: clamp(1rem, 4vw, 2rem);
-  transform: translateX(var(--front-shift));
-  will-change: transform;
+  transform-origin: top left;
+  transform: translateZ(-0.35px) scale(1.35);
 }
 
 .content-card,
@@ -150,6 +154,11 @@ body {
   backdrop-filter: blur(4px);
   box-shadow: 0 20px 46px rgba(21, 36, 53, 0.15);
   padding: clamp(1.1rem, 4.5vw, 1.75rem);
+}
+
+.content-card {
+  position: relative;
+  z-index: 2;
 }
 
 .screen-two-content {
@@ -207,11 +216,15 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --parallax-tilt: 0deg;
-  }
-
   .snap-shell {
     scroll-behavior: auto;
+  }
+
+  .parallax {
+    transform: none;
+  }
+
+  .sticky-content {
+    transform: none;
   }
 }
