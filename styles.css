@@ -91,8 +91,32 @@ body {
 }
 
 .container > .parallax,
-.container > .sticky-content {
+.container > .sticky-content,
+.container > .scrim-perspective {
   grid-area: 1 / 1;
+}
+
+.scrim-perspective {
+  width: 100%;
+  height: 100%;
+  perspective: 2px;
+  perspective-origin: top center;
+  z-index: 3;
+  transform: rotateZ(180deg);
+}
+
+.scrim {
+  outline: 1px solid red;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.15));
+  transform-origin: top left;
+  transform: translateZ(0px) scale(1);
+  pointer-events: none;
+  z-index: 3;
 }
 
 .parallax {
@@ -225,7 +249,7 @@ button:focus-visible {
 ::view-transition-group(section1-sticky),
 ::view-transition-group(section1-parallax) {
   animation-duration: 540;
-  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  animation-timing-function: ease-out-expo;
 }
 
 ::view-transition-old(root),
@@ -235,7 +259,7 @@ button:focus-visible {
 ::view-transition-old(section1-parallax),
 ::view-transition-new(section1-parallax) {
   animation-duration: 540ms;
-  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  animation-timing-function: ease-out-expo;
   animation-fill-mode: both;
   pointer-events: none;
 }
